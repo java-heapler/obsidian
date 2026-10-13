@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "obsidian-vault"
+version = "0.1.0"
+description = "Agent CLI for reading and safely editing local Obsidian Markdown vaults."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Joseph Heupler"}]
+dependencies = ["PyYAML>=6,<7"]
+
+[project.scripts]
+obsidian-vault = "obsidian_vault.cli:run"
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-cov>=7,<8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/obsidian_vault"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

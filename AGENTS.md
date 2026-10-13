@@ -1,0 +1,2 @@
+Use ~/.config/tool-registry/registry.json. Never send without the user's OK.
+This standalone repository owns obsidian-vault and skills/obsidian only. Keep src-layout, hatchling, uv, JSON output and explicit write intent. Do not modify superai-skills. Tests use synthetic vaults; never write user notes during development. Read commands must be nonmutating. Do not commit vault config, notes, or other personal data. Run uv run pytest with branch coverage and uv build after code changes. Document filesystem race limitations honestly.
