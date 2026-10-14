@@ -199,3 +199,20 @@ def test_scan_permission_error(vault, monkeypatch, capsys):
     monkeypatch.setattr(os, "walk", walk)
     assert cli.main(["--vault", str(vault), "list"]) == 1
     assert "unreadable folder" in json.loads(capsys.readouterr().out)["error"]
+
+
+def test_resolved_path_escape_is_rejected(vault, tmp_path, monkeypatch):
+    # Model a directory replacement between the symlink check and final resolution.
+    original_resolve = Path.resolve
+    target = vault / 'empty.md'
+    outside = tmp_path / 'outside.md'
+    outside.write_text('private')
+
+    def moved_directory(path, *args, **kwargs):
+        return outside if path == target else original_resolve(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, 'resolve', moved_directory)
+    with pytest.raises(ValueError, match='outside vault'):
+        cli.read_note(vault, 'empty.md')
+    assert target.read_bytes() == b''
+    assert outside.read_text() == 'private'

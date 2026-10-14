@@ -11,6 +11,9 @@ requires-python = ">=3.11"
 authors = [{name = "Joseph Heupler"}]
 dependencies = ["PyYAML>=6,<7"]
 
+[project.urls]
+Repository = "https://github.com/java-heapler/obsidian-mcp"
+
 [project.scripts]
 obsidian-vault = "obsidian_vault.cli:run"
 
@@ -23,3 +26,4 @@ packages = ["src/obsidian_vault"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+addopts = "--cov=obsidian_vault --cov-branch --cov-report=term-missing --cov-fail-under=100"

@@ -14,5 +14,5 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: uv sync --locked --extra dev
-      - run: uv run pytest --cov=obsidian_vault --cov-branch --cov-report=term-missing --cov-fail-under=97
+      - run: uv run pytest
       - run: uv build

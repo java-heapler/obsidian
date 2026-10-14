@@ -1,8 +1,10 @@
-# Obsidian vault
+# obsidian-mcp
 
 A JSON CLI and agent skill for local Obsidian Markdown vaults. Discover registered vaults, list notes, search literal text, read Markdown and YAML frontmatter, and explicitly create, replace, or append notes. Runs without Obsidian or plugins.
 
 This is filesystem integration, not the official Obsidian CLI: it does not operate the application, graph, plugins, workspace, sync, or rendered links. App discovery defaults to macOS configuration; explicit vault paths work on other systems. No network calls.
+
+Repository: [java-heapler/obsidian-mcp](https://github.com/java-heapler/obsidian-mcp). The CLI and skill names remain unchanged; this package does not expose an MCP server.
 
 ## Install and use
 
@@ -36,8 +38,8 @@ UTF-8 notes only; existing bytes and line endings are preserved by append, while
 
 ```sh
 uv sync --extra dev
-uv run pytest --cov=obsidian_vault --cov-branch --cov-report=term-missing
+uv run pytest
 uv build
 ```
 
-Current baseline: 30 tests pass, 163/164 executable lines covered (99.39%) and 81/82 branches covered (98.78%). Synthetic tests cover path boundaries, privacy exclusions, parsing, exact bytes, permission preservation, stale-write and no-clobber behavior, JSON CLI errors, and subprocess execution. CI runs these tests and builds on Python 3.11 and 3.13. Coverage measures exercised code, not proof of complete correctness.
+Current baseline: 31 tests pass, 164/164 executable lines and 82/82 branches covered (100% each). CI enforces 100% coverage. Synthetic tests cover path boundaries, privacy exclusions, parsing, exact bytes, permission preservation, stale-write and no-clobber behavior, JSON CLI errors, and subprocess execution. CI runs these tests and builds on Python 3.11 and 3.13. Coverage measures exercised code, not proof of complete correctness.
